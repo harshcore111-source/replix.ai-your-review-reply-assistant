@@ -403,7 +403,8 @@ function GeneratorDialog({ open, onOpenChange, review, existingReply, profile, o
     if (existingReply) {
       await supabase.from("replies").update({ reply_text: reply }).eq("id", existingReply.id);
     } else {
-      await supabase.from("replies").insert({ review_id: review.id, user_id: review.user_id ?? (await supabase.auth.getUser()).data.user!.id, reply_text: reply });
+      const { data: { user: u } } = await supabase.auth.getUser();
+      await supabase.from("replies").insert({ review_id: review.id, user_id: u!.id, reply_text: reply });
     }
     await supabase.from("reviews").update({ status: "replied" }).eq("id", review.id);
     setSaving(false);
