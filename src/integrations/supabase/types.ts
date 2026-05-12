@@ -14,7 +14,140 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      business_profiles: {
+        Row: {
+          business_name: string | null
+          business_type: string | null
+          created_at: string
+          custom_instruction: string | null
+          default_language: string
+          default_length: string
+          default_tone: string
+          id: string
+          onboarded: boolean
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          business_name?: string | null
+          business_type?: string | null
+          created_at?: string
+          custom_instruction?: string | null
+          default_language?: string
+          default_length?: string
+          default_tone?: string
+          id?: string
+          onboarded?: boolean
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          business_name?: string | null
+          business_type?: string | null
+          created_at?: string
+          custom_instruction?: string | null
+          default_language?: string
+          default_length?: string
+          default_tone?: string
+          id?: string
+          onboarded?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      replies: {
+        Row: {
+          created_at: string
+          id: string
+          reply_text: string
+          review_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          reply_text: string
+          review_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          reply_text?: string
+          review_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "replies_review_id_fkey"
+            columns: ["review_id"]
+            isOneToOne: false
+            referencedRelation: "reviews"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reviews: {
+        Row: {
+          created_at: string
+          customer_name: string | null
+          id: string
+          rating: number
+          review_text: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          customer_name?: string | null
+          id?: string
+          rating: number
+          review_text: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          customer_name?: string | null
+          id?: string
+          rating?: number
+          review_text?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      usage: {
+        Row: {
+          billing_cycle_start: string
+          created_at: string
+          id: string
+          plan_type: string
+          replies_used: number
+          user_id: string
+        }
+        Insert: {
+          billing_cycle_start?: string
+          created_at?: string
+          id?: string
+          plan_type?: string
+          replies_used?: number
+          user_id: string
+        }
+        Update: {
+          billing_cycle_start?: string
+          created_at?: string
+          id?: string
+          plan_type?: string
+          replies_used?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
