@@ -323,7 +323,7 @@ function PasteReviewDialog({ open, onOpenChange, userId, onSaved }: { open: bool
             <div className="mt-2 flex gap-1">
               {[1, 2, 3, 4, 5].map((n) => (
                 <button key={n} type="button" onClick={() => setRating(n)} className="p-1">
-                  <Star className={`h-6 w-6 ${n <= rating ? "fill-primary text-primary" : "text-muted-foreground/40"}`} />
+                  <Star className={`h-6 w-6 ${n <= rating ? "fill-[#FFFF00] text-[#FFFF00]" : "text-muted-foreground/40"}`} />
                 </button>
               ))}
             </div>
